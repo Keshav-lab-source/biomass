@@ -59,14 +59,8 @@ const ImageCarousel: React.FC = () => {
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         effect="fade"
         navigation={{
-          nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
-        }}
-        pagination={{
-          clickable: true,
-          el: '.swiper-pagination',
-          bulletClass: 'swiper-pagination-bullet bg-white opacity-50 w-2 h-2 mx-1',
-          bulletActiveClass: 'swiper-pagination-bullet-active opacity-100',
+          nextEl: '.swiper-button-next',
         }}
         autoplay={{
           delay: 3000,
@@ -85,80 +79,42 @@ const ImageCarousel: React.FC = () => {
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-black bg-opacity-30" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="container-custom text-white text-center">
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in">
+                    {slide.title}
+                  </h2>
+                  <p className="text-xl md:text-2xl mb-8 animate-slide-up">
+                    {slide.subtitle}
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link to="/about" className="btn-primary">
+                      About Us
+                    </Link>
+                    <Link to="/research" className="btn-outline border-white text-white hover:bg-white/10">
+                      Research & Development
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* Text Container - Positioned below the slider */}
-      <div className="absolute bottom-0 left-0 right-0 bg-primary-800 bg-opacity-90 py-8 px-4">
-        <div className="container mx-auto">
-          <div className="max-w-4xl">
-            {slides.map((slide, index) => (
-              <div
-                key={slide.id}
-                className="swiper-slide-content hidden data-[active=true]:block"
-                data-slide={index}
-              >
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white animate-fade-in">
-                  {slide.title}
-                </h2>
-                <p className="text-xl md:text-2xl text-white/90 mb-6 animate-slide-up">
-                  {slide.subtitle}
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Link
-                    to="/about"
-                    className="inline-flex items-center px-6 py-3 bg-white text-primary-800 rounded-lg hover:bg-primary-50 transition-colors duration-300"
-                  >
-                    About Us
-                  </Link>
-                  <Link
-                    to="/research"
-                    className="inline-flex items-center px-6 py-3 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors duration-300"
-                  >
-                    Research & Development
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Custom Navigation Arrows */}
+      <div className="swiper-button-prev !w-12 !h-12 !bg-white/10 !backdrop-blur-sm !rounded-full !text-white hover:!bg-white/20 transition-all !left-6">
+        <span className="after:!text-2xl"></span>
+      </div>
+      <div className="swiper-button-next !w-12 !h-12 !bg-white/10 !backdrop-blur-sm !rounded-full !text-white hover:!bg-white/20 transition-all !right-6">
+        <span className="after:!text-2xl"></span>
       </div>
 
-      {/* Custom Navigation Buttons */}
-      <div className="swiper-button-prev !text-white after:!text-2xl hover:!text-primary-300 transition-colors !left-4"></div>
-      <div className="swiper-button-next !text-white after:!text-2xl hover:!text-primary-300 transition-colors !right-4"></div>
-
-      {/* Custom Pagination */}
-      <div className="swiper-pagination !bottom-32 !z-20"></div>
-
       <style>{`
-        .swiper-pagination-bullet {
-          background: white !important;
-          opacity: 0.5;
-          width: 8px !important;
-          height: 8px !important;
-          margin: 0 4px !important;
-        }
-        .swiper-pagination-bullet-active {
-          opacity: 1 !important;
-        }
-        .swiper-button-prev,
-        .swiper-button-next {
-          width: 40px !important;
-          height: 40px !important;
-          background-color: rgba(0, 0, 0, 0.3);
-          border-radius: 50%;
-          transition: all 0.3s ease;
-        }
-        .swiper-button-prev:hover,
-        .swiper-button-next:hover {
-          background-color: rgba(0, 0, 0, 0.5);
-        }
         .swiper-button-prev:after,
         .swiper-button-next:after {
-          font-size: 18px !important;
+          font-size: 20px !important;
+          font-weight: bold;
         }
       `}</style>
     </div>
