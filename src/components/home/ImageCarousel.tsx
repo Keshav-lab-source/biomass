@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
@@ -102,9 +103,23 @@ const ImageCarousel: React.FC = () => {
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white animate-fade-in">
                   {slide.title}
                 </h2>
-                <p className="text-xl md:text-2xl text-white/90 animate-slide-up">
+                <p className="text-xl md:text-2xl text-white/90 mb-6 animate-slide-up">
                   {slide.subtitle}
                 </p>
+                <div className="flex flex-wrap gap-4">
+                  <Link
+                    to="/about"
+                    className="inline-flex items-center px-6 py-3 bg-white text-primary-800 rounded-lg hover:bg-primary-50 transition-colors duration-300"
+                  >
+                    About Us
+                  </Link>
+                  <Link
+                    to="/research"
+                    className="inline-flex items-center px-6 py-3 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors duration-300"
+                  >
+                    Research & Development
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
