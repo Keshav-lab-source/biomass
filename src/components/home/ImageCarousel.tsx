@@ -64,7 +64,7 @@ const ImageCarousel: React.FC = () => {
         pagination={{
           clickable: true,
           el: '.swiper-pagination',
-          bulletClass: 'swiper-pagination-bullet bg-white opacity-50 w-3 h-3 mx-2',
+          bulletClass: 'swiper-pagination-bullet bg-white opacity-50 w-2 h-2 mx-1',
           bulletActiveClass: 'swiper-pagination-bullet-active opacity-100',
         }}
         autoplay={{
@@ -112,8 +112,8 @@ const ImageCarousel: React.FC = () => {
       </div>
 
       {/* Custom Navigation Buttons */}
-      <div className="swiper-button-prev !text-white after:!text-3xl hover:!text-primary-300 transition-colors"></div>
-      <div className="swiper-button-next !text-white after:!text-3xl hover:!text-primary-300 transition-colors"></div>
+      <div className="swiper-button-prev !text-white after:!text-2xl hover:!text-primary-300 transition-colors !left-4"></div>
+      <div className="swiper-button-next !text-white after:!text-2xl hover:!text-primary-300 transition-colors !right-4"></div>
 
       {/* Custom Pagination */}
       <div className="swiper-pagination !bottom-32 !z-20"></div>
@@ -122,17 +122,17 @@ const ImageCarousel: React.FC = () => {
         .swiper-pagination-bullet {
           background: white !important;
           opacity: 0.5;
-          width: 12px !important;
-          height: 12px !important;
-          margin: 0 6px !important;
+          width: 8px !important;
+          height: 8px !important;
+          margin: 0 4px !important;
         }
         .swiper-pagination-bullet-active {
           opacity: 1 !important;
         }
         .swiper-button-prev,
         .swiper-button-next {
-          width: 50px !important;
-          height: 50px !important;
+          width: 40px !important;
+          height: 40px !important;
           background-color: rgba(0, 0, 0, 0.3);
           border-radius: 50%;
           transition: all 0.3s ease;
@@ -140,6 +140,10 @@ const ImageCarousel: React.FC = () => {
         .swiper-button-prev:hover,
         .swiper-button-next:hover {
           background-color: rgba(0, 0, 0, 0.5);
+        }
+        .swiper-button-prev:after,
+        .swiper-button-next:after {
+          font-size: 18px !important;
         }
       `}</style>
     </div>
