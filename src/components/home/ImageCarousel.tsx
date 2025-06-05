@@ -57,8 +57,16 @@ const ImageCarousel: React.FC = () => {
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         effect="fade"
-        navigation
-        pagination={{ clickable: true }}
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }}
+        pagination={{
+          clickable: true,
+          el: '.swiper-pagination',
+          bulletClass: 'swiper-pagination-bullet bg-white opacity-50 w-3 h-3 mx-2',
+          bulletActiveClass: 'swiper-pagination-bullet-active opacity-100',
+        }}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
@@ -75,21 +83,65 @@ const ImageCarousel: React.FC = () => {
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-50" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="container-custom text-white text-center">
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in">
-                    {slide.title}
-                  </h2>
-                  <p className="text-xl md:text-2xl animate-slide-up">
-                    {slide.subtitle}
-                  </p>
-                </div>
-              </div>
+              <div className="absolute inset-0 bg-black bg-opacity-30" />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* Text Container - Positioned below the slider */}
+      <div className="absolute bottom-0 left-0 right-0 bg-primary-800 bg-opacity-90 py-8 px-4">
+        <div className="container mx-auto">
+          <div className="max-w-4xl">
+            {slides.map((slide, index) => (
+              <div
+                key={slide.id}
+                className="swiper-slide-content hidden data-[active=true]:block"
+                data-slide={index}
+              >
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white animate-fade-in">
+                  {slide.title}
+                </h2>
+                <p className="text-xl md:text-2xl text-white/90 animate-slide-up">
+                  {slide.subtitle}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Custom Navigation Buttons */}
+      <div className="swiper-button-prev !text-white after:!text-3xl hover:!text-primary-300 transition-colors"></div>
+      <div className="swiper-button-next !text-white after:!text-3xl hover:!text-primary-300 transition-colors"></div>
+
+      {/* Custom Pagination */}
+      <div className="swiper-pagination !bottom-32 !z-20"></div>
+
+      <style>{`
+        .swiper-pagination-bullet {
+          background: white !important;
+          opacity: 0.5;
+          width: 12px !important;
+          height: 12px !important;
+          margin: 0 6px !important;
+        }
+        .swiper-pagination-bullet-active {
+          opacity: 1 !important;
+        }
+        .swiper-button-prev,
+        .swiper-button-next {
+          width: 50px !important;
+          height: 50px !important;
+          background-color: rgba(0, 0, 0, 0.3);
+          border-radius: 50%;
+          transition: all 0.3s ease;
+        }
+        .swiper-button-prev:hover,
+        .swiper-button-next:hover {
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+      `}</style>
     </div>
   );
 };
