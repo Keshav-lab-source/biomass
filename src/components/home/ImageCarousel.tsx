@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import { Navigation, Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
 const slides = [
@@ -56,11 +55,11 @@ const ImageCarousel: React.FC = () => {
   return (
     <div className="relative h-[80vh] min-h-[600px]">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay, EffectFade]}
+        modules={[Navigation, Autoplay, EffectFade]}
         effect="fade"
         navigation={{
           prevEl: '.swiper-button-prev',
-          nextEl: '.swiper-button-next',
+          nextEl: '.swiper-button-next'
         }}
         autoplay={{
           delay: 3000,
@@ -78,20 +77,26 @@ const ImageCarousel: React.FC = () => {
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-30" />
+              <div className="absolute inset-0 bg-black bg-opacity-60" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="container-custom text-white text-center">
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in">
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in text-shadow">
                     {slide.title}
                   </h2>
-                  <p className="text-xl md:text-2xl mb-8 animate-slide-up">
+                  <p className="text-xl md:text-2xl mb-8 animate-slide-up text-shadow">
                     {slide.subtitle}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link to="/about" className="btn-primary">
+                    <Link 
+                      to="/about" 
+                      className="btn bg-primary-500 text-white hover:bg-primary-600 shadow-lg hover:shadow-xl"
+                    >
                       About Us
                     </Link>
-                    <Link to="/research" className="btn-outline border-white text-white hover:bg-white/10">
+                    <Link 
+                      to="/research" 
+                      className="btn border-2 border-white text-white hover:bg-white/10"
+                    >
                       Research & Development
                     </Link>
                   </div>
@@ -103,18 +108,30 @@ const ImageCarousel: React.FC = () => {
       </Swiper>
 
       {/* Custom Navigation Arrows */}
-      <div className="swiper-button-prev !w-12 !h-12 !bg-white/10 !backdrop-blur-sm !rounded-full !text-white hover:!bg-white/20 transition-all !left-6">
+      <div className="swiper-button-prev !w-14 !h-14 !bg-black/30 hover:!bg-black/50 !backdrop-blur-sm !rounded-full !text-white !transition-all !left-6">
         <span className="after:!text-2xl"></span>
       </div>
-      <div className="swiper-button-next !w-12 !h-12 !bg-white/10 !backdrop-blur-sm !rounded-full !text-white hover:!bg-white/20 transition-all !right-6">
+      <div className="swiper-button-next !w-14 !h-14 !bg-black/30 hover:!bg-black/50 !backdrop-blur-sm !rounded-full !text-white !transition-all !right-6">
         <span className="after:!text-2xl"></span>
       </div>
 
       <style>{`
+        .text-shadow {
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
         .swiper-button-prev:after,
         .swiper-button-next:after {
-          font-size: 20px !important;
+          font-size: 24px !important;
           font-weight: bold;
+        }
+        .swiper-button-prev,
+        .swiper-button-next {
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+        .swiper:hover .swiper-button-prev,
+        .swiper:hover .swiper-button-next {
+          opacity: 1;
         }
       `}</style>
     </div>
