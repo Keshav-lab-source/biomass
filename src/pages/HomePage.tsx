@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Hero from '../components/home/Hero';
+import ImageCarousel from '../components/home/ImageCarousel';
 import ProductsGrid from '../components/home/ProductsGrid';
 import StatsBanner from '../components/home/StatsBanner';
 import PartnersCarousel from '../components/home/PartnersCarousel';
@@ -53,13 +53,7 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <Hero
-        title="Sustainable Biomass Solutions for a Cleaner Future"
-        subtitle="Leading the way in renewable energy with innovative biomass technologies that reduce emissions and increase efficiency."
-        ctaText="About Us"
-        ctaLink="/about"
-        backgroundImage="https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-      />
+      <ImageCarousel />
       
       <section className="section bg-primary-50">
         <div className="container-custom">
